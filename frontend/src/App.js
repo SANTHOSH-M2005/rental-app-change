@@ -7,11 +7,11 @@ import Register from './pages/Register';
 import VehicleList from './pages/VehicleList';
 import VehicleDetail from './pages/VehicleDetail';
 import RentalList from './pages/RentalList';
-// Add new imports here:
 import SaleList from './pages/SaleList';
 import CreateSale from './pages/CreateSale';
 import SaleDetail from './pages/SaleDetail';
 import Favorites from './pages/Favorites';
+import ResetPassword from './pages/ResetPassword'; // ✅ Moved import here
 import './App.css';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
-    
+
     if (token && userData) {
       setIsAuthenticated(true);
       setUser(JSON.parse(userData));
@@ -51,45 +51,61 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
-        <Header 
-          isAuthenticated={isAuthenticated} 
-          user={user} 
-          onLogout={handleLogout} 
+        <Header
+          isAuthenticated={isAuthenticated}
+          user={user}
+          onLogout={handleLogout}
         />
-        
+
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route path="/register" element={<Register onLogin={handleLogin} />} />
             <Route path="/vehicles" element={<VehicleList />} />
-            <Route 
-              path="/vehicles/:id" 
-              element={<VehicleDetail isAuthenticated={isAuthenticated} />} 
+            <Route
+              path="/vehicles/:id"
+              element={<VehicleDetail isAuthenticated={isAuthenticated} />}
             />
-            <Route 
-              path="/rentals" 
-              element={isAuthenticated ? <RentalList /> : <Login onLogin={handleLogin} />} 
+            <Route
+              path="/rentals"
+              element={
+                isAuthenticated ? (
+                  <RentalList />
+                ) : (
+                  <Login onLogin={handleLogin} />
+                )
+              }
             />
-            
-            {/* ADD NEW ROUTES HERE */}
+
+            {/* Sales Routes */}
             <Route path="/sales" element={<SaleList />} />
-            <Route 
-              path="/sales/new" 
-              element={<CreateSale isAuthenticated={isAuthenticated} />} 
+            <Route
+              path="/sales/new"
+              element={<CreateSale isAuthenticated={isAuthenticated} />}
             />
-            <Route 
-              path="/sales/:id" 
-              element={<SaleDetail isAuthenticated={isAuthenticated} />} 
+            <Route
+              path="/sales/:id"
+              element={<SaleDetail isAuthenticated={isAuthenticated} />}
             />
-            <Route 
-              path="/favorites" 
-              element={isAuthenticated ? <Favorites /> : <Login onLogin={handleLogin} />} 
+
+            {/* Favorites Route */}
+            <Route
+              path="/favorites"
+              element={
+                isAuthenticated ? (
+                  <Favorites />
+                ) : (
+                  <Login onLogin={handleLogin} />
+                )
+              }
             />
-            
+
+            {/* ✅ Reset Password Route */}
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
         </main>
-        
+
         <footer className="bg-gray-800 text-white py-8 mt-12">
           <div className="container mx-auto px-4 text-center">
             <p>&copy; {new Date().getFullYear()} RentalApp. All rights reserved.</p>
