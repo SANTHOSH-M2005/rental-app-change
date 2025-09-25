@@ -51,25 +51,20 @@ db.serialize(() => {
     FOREIGN KEY (vehicle_id) REFERENCES vehicles (id)
   )`);
 
-  // Insert sample data
+  // Insert sample data - UPDATED with real Indian bike images
   db.run(`INSERT OR IGNORE INTO vehicles (type, brand, model, year, price_per_hour, price_per_day, available, image_url, description, features) VALUES
-    ('bike', 'Trek', 'FX 2', 2023, 5.00, 35.00, 1, '/images/trek_fx2.jpg', 'Hybrid bike perfect for city commuting', '21 speeds, aluminum frame, disc brakes'),
-    ('bike', 'Giant', 'Escape 3', 2023, 4.50, 30.00, 1, '/images/giant_escape3.jpg', 'Comfortable hybrid bike with reliable components', '7 speeds, steel frame, upright riding position'),
-    ('car', 'Toyota', 'Corolla', 2022, 15.00, 85.00, 1, '/images/toyota_corolla.jpg', 'Economical and reliable sedan', 'Automatic transmission, 4 doors, air conditioning'),
-    ('car', 'Honda', 'CR-V', 2023, 20.00, 110.00, 1, '/images/honda_crv.jpg', 'Spacious and comfortable SUV', 'Automatic transmission, 5 seats, GPS navigation')
+    ('bike', 'TVS', 'Ronin', 2023, 15.00, 120.00, 1, 'https://img.autocarindia.com/Features/TVS%20Ronin.jpg?w=700&c=0', 'Modern adventure touring motorcycle', '225cc engine, LED headlamps, dual-channel ABS'),
+    ('bike', 'TVS', 'Apache 160', 2023, 12.00, 100.00, 1, 'https://imgd.aeplcdn.com/1056x594/n/cw/ec/205660/apache-160-right-side-view.jpeg?isig=0&q=80&wm=3', 'Sporty performance motorcycle', '160cc engine, racing DNA, digital console'),
+    ('bike', 'TVS', 'Raider 125', 2022, 10.00, 80.00, 1, 'https://imgd.aeplcdn.com/370x208/n/cw/ec/103183/raider-125-right-side-view-20.png?isig=0&q=80', 'Stylish commuter bike', '125cc engine, sharp styling, excellent mileage'),
+    ('bike', 'Yamaha', 'R15 V4', 2023, 18.00, 150.00, 1, 'https://imgd.aeplcdn.com/370x208/n/cw/ec/209893/r15-right-side-view.jpeg?isig=0&q=80', 'Premium sports bike', '155cc liquid-cooled engine, racing heritage, VVA technology'),
+    ('bike', 'Generic', 'Sport Bike', 2022, 14.00, 110.00, 1, 'https://i.cdn.newsbytesapp.com/images/l65520240516142907.jpeg', 'Reliable sport motorcycle', 'Fuel efficient, comfortable seating, digital display'),
+    ('car', 'Toyota', 'Corolla', 2022, 15.00, 85.00, 1, 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400', 'Economical and reliable sedan', 'Automatic transmission, 4 doors, air conditioning'),
+    ('car', 'Honda', 'CR-V', 2023, 20.00, 110.00, 1, 'https://images.unsplash.com/photo-1603712610494-93e15447474c?w=400', 'Spacious and comfortable SUV', 'Automatic transmission, 5 seats, GPS navigation')
   `);
 });
-// Replace the image_url values with placeholder URLs
-db.run(`INSERT OR IGNORE INTO vehicles (type, brand, model, year, price_per_hour, price_per_day, available, image_url, description, features) VALUES
-  ('bike', 'Trek', 'FX 2', 2023, 5.00, 35.00, 1, 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=400', 'Hybrid bike perfect for city commuting', '21 speeds, aluminum frame, disc brakes'),
-  ('bike', 'Giant', 'Escape 3', 2023, 4.50, 30.00, 1, 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400', 'Comfortable hybrid bike with reliable components', '7 speeds, steel frame, upright riding position'),
-  ('car', 'Toyota', 'Corolla', 2022, 15.00, 85.00, 1, 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400', 'Economical and reliable sedan', 'Automatic transmission, 4 doors, air conditioning'),
-  ('car', 'Honda', 'CR-V', 2023, 20.00, 110.00, 1, 'https://images.unsplash.com/photo-1603712610494-93e15447474c?w=400', 'Spacious and comfortable SUV', 'Automatic transmission, 5 seats, GPS navigation')
-`);
+
 // Add new tables for vehicle sales
 db.serialize(() => {
-  // ... existing tables ...
-  
   // Vehicle listings for sale
   db.run(`CREATE TABLE IF NOT EXISTS vehicle_sales (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
