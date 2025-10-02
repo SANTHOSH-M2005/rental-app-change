@@ -49,9 +49,9 @@ const VehicleDetail = ({ isAuthenticated }) => {
         'https://imgd.aeplcdn.com/370x208/n/cw/ec/209893/r15-right-side-view.jpeg?isig=0&q=80',
         'https://imgd.aeplcdn.com/370x208/n/cw/ec/103183/raider-125-right-side-view-20.png?isig=0&q=80',
         // Additional MOTORCYCLE backups (NOT bicycles)
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800',
+        
         'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=800',
-        'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800'
+        
       ];
 
       const currentSrc = e.target.src;
@@ -72,7 +72,7 @@ const VehicleDetail = ({ isAuthenticated }) => {
       // Car-specific fallback images
       const carFallbacks = [
         'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800',
-        'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800',
+        
         'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800'
       ];
 
